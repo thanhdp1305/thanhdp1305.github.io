@@ -84,6 +84,8 @@ let AppComponent = /*#__PURE__*/(() => {
           console.log('swUpdate.isEnabled');
           const isNewVersion = yield _this.swUpdate.activateUpdate();
           if (isNewVersion) {
+            window.location.reload();
+            return;
             _this.myModal.show({
               title: 'version_dialog_title',
               content: 'version_dialog_descriptions',
@@ -192,8 +194,8 @@ let AppModule = /*#__PURE__*/(() => {
       // Config Ngx-Translate
       translateCacheService.init();
       translate.addLangs(['en', 'vi']);
-      const browserLang = translateCacheService.getCachedLanguage() || 'vi';
-      translate.use(browserLang.match(/en|vi/) ? browserLang : 'vi');
+      const browserLang = 'en'; //translateCacheService.getCachedLanguage() || 'vi';
+      translate.use(browserLang.match(/en|vi/) ? browserLang : 'en');
       //Ng-select config
       this.config.notFoundText = 'Không tìm thấy kết quả';
       this.config.loadingText = 'Đang tìm...';
